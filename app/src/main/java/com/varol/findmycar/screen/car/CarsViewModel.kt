@@ -43,12 +43,10 @@ class CarsViewModel(
 
 
     fun showLocationWaitingProgress() {
-        showProgress()
         isWaitingForLocation.postValue(true)
     }
 
     fun hideLocationWaitingProgress() {
-        hideProgress()
         isWaitingForLocation.postValue(false)
     }
 

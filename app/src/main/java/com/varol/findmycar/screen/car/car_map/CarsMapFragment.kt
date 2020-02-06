@@ -50,8 +50,11 @@ class CarsMapFragment : BaseFragment<CarsViewModel, FragmentCarsMapBinding>(Cars
     private lateinit var markers: List<PlaceViewEntity>
 
     companion object {
+
         private const val DURATION_MAP_ANIMATION = 1200
-        private const val ZOOM_LEVEL_MAP_ANIMATION = 8.5f
+        private const val ZOOM_LEVEL_MAP_ANIMATION = 15f
+        private const val MAP_BOUNDS_PADDING = 300
+
         private val PERMISSIONS = arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION
         )
@@ -96,11 +99,12 @@ class CarsMapFragment : BaseFragment<CarsViewModel, FragmentCarsMapBinding>(Cars
         val bounds = boundsBuilder.build()
         with(map) {
             clear()
-            uiSettings.run {
-                isMyLocationButtonEnabled = true
-            }
             setOnMarkerClickListener(this@CarsMapFragment)
-            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50), DURATION_MAP_ANIMATION, null)
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngBounds(bounds, MAP_BOUNDS_PADDING),
+                DURATION_MAP_ANIMATION,
+                null
+            )
         }
         addMarkersToMap(map, markers)
     }
@@ -158,8 +162,9 @@ class CarsMapFragment : BaseFragment<CarsViewModel, FragmentCarsMapBinding>(Cars
             fusedLocationClient = LocationServices
                 .getFusedLocationProviderClient(activity).apply {
                     lastLocation.addOnSuccessListener { location: Location? ->
-                        viewModel.hideLocationWaitingProgress()
                         map.isMyLocationEnabled = true
+                        map.uiSettings.isMyLocationButtonEnabled = false
+                        viewModel.hideLocationWaitingProgress()
                         location?.let {
                             checkMapReadyThen {
                                 zoomToLatLng(it.toLatLng())
