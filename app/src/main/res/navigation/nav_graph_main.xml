@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/carsPagerFragment">
+
+    <fragment
+        android:id="@+id/carListFragment"
+        android:name="com.varol.findmycar.screen.car.car_list.CarListFragment"
+        android:label="CarListFragment"
+        app:enterAnim="@anim/enter_presentation"
+        app:exitAnim="@anim/exit_presentation"
+        app:popEnterAnim="@anim/pop_enter_presentation"
+        app:popExitAnim="@anim/pop_exit_presentation"
+        tools:layout="@layout/fragment_car_list" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/carsPagerFragment"
+        android:name="com.varol.findmycar.screen.car.CarsPagerFragment"
+        android:label="CarsPagerFragment"
+        app:enterAnim="@anim/enter_presentation"
+        app:exitAnim="@anim/exit_presentation"
+        app:popEnterAnim="@anim/pop_enter_presentation"
+        app:popExitAnim="@anim/pop_exit_presentation"
+        tools:layout="@layout/fragment_cars_pager" >
+    </fragment>
+
+</navigation>

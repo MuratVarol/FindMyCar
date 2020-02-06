@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewPager"
+            type="androidx.viewpager.widget.ViewPager" />
+
+        <variable
+            name="headerText"
+            type="String" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:background="@color/orange"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextField.Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_top_header_text"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@{headerText}" />
+
+        <com.varol.findmycar.internal.view.RoundedCornerTabLayout
+            android:id="@+id/tab_layout_van_to_van_summary"
+            style="@style/AppTabLayout.Switcher"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_tablayout"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large"
+            app:setupWithViewPager="@{viewPager}"
+            app:tabSelectedTextColor="@color/tab_active"
+            app:tabTextAppearance="@style/AppTabTextAppearance.Switcher"
+            app:tabTextColor="@color/tab_passive" />
+
+    </LinearLayout>
+
+</layout>

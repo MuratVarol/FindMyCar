@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.varol.findmycar.internal.view.RootConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:progressVisibility="@{viewModel.isLoading}">
+
+        <fragment
+            android:id="@+id/fragment_car_map"
+            class="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_location"
+            style="@style/CardView.Floating"
+            android:layout_width="@dimen/height_floating_card_view"
+            android:layout_height="@dimen/height_floating_card_view"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:enableBlinking="@{viewModel.isWaitingForLocation}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_medium"
+                app:srcCompat="@drawable/ic_location" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_bounds"
+            style="@style/CardView.Floating"
+            android:layout_width="@dimen/height_floating_card_view"
+            android:layout_height="@dimen/height_floating_card_view"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_location">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_medium"
+                app:srcCompat="@drawable/ic_scale" />
+
+        </androidx.cardview.widget.CardView>
+
+    </com.varol.findmycar.internal.view.RootConstraintLayout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.varol.findmycar.screen.car.CarsViewModel" />
+
+    </data>
+
+</layout>

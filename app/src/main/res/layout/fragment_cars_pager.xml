@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.varol.findmycar.internal.databinding.ViewPagerBindingAdapters.PagerBindingEnum"/>
+
+        <variable
+            name="viewModel"
+            type="com.varol.findmycar.screen.car.CarsViewModel" />
+
+        <variable
+            name="fragment"
+            type="androidx.fragment.app.Fragment" />
+
+    </data>
+
+    <com.varol.findmycar.internal.view.RootConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/layout_pager_toolbar"
+                layout="@layout/toolbar_pager"
+                app:headerText="@{@string/app_name}"
+                app:viewPager="@{viewPagerCars}"/>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager_cars"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:pagerAdapter='@{PagerBindingEnum.CARS}'
+                app:parentFragment="@{fragment}"/>
+
+        </LinearLayout>
+
+    </com.varol.findmycar.internal.view.RootConstraintLayout>
+
+</layout>

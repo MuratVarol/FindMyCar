@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FindMyCar</string>
+    <string name="google_maps_api_key" translatable="false">AIzaSyBTFqf5C7NvfaP8cLKjHPLvxgO9VXHmxAI</string>
+</resources>

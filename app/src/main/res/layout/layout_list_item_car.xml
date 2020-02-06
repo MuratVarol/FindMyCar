@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="com.varol.findmycar.screen.car.CarViewEntity" />
+
+        <variable
+            name="viewModel"
+            type="com.varol.findmycar.screen.car.CarsViewModel" />
+    </data>
+
+    <com.varol.findmycar.internal.view.RootConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            style="@style/CardView.ListItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_xxs"
+            android:onClick="@{() -> viewModel.onCarSelected(model.id)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_small">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_model_name"
+                    style="@style/TextField.List_ModelName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    android:includeFontPadding="false"
+                    android:text="@{model.modelName}"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_car"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="MINI Cooper" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_transmission"
+                    style="@style/TextField.List_Small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    app:boldText="@{model.transmission.value}"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_model_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_model_name"
+                    app:regularText="@{@string/list_transmission}"
+                    tools:text="Transmission: MANUAL" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_fuel_type"
+                    style="@style/TextField.List_Small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    app:boldText="@{model.fuelType.value}"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_model_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_transmission"
+                    app:regularText="@{@string/list_fuel_type}"
+                    tools:text="Fuel Type: PETROL" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_cleanliness"
+                    style="@style/TextField.List_Small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    app:boldText="@{model.cleanliness.value}"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_model_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fuel_type"
+                    app:regularText="@{@string/list_cleanliness}"
+                    tools:text="Cleanliness: VERY CLEAN" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_color"
+                    style="@style/TextField.List_Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
+                    android:text="@string/list_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/cardView"
+                    app:layout_constraintEnd_toStartOf="@+id/cardView"
+                    app:layout_constraintTop_toTopOf="@+id/cardView"
+                    tools:text="Color: " />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    style="@style/CardView.ListItem"
+                    android:layout_width="@dimen/color_card_view_size"
+                    android:layout_height="@dimen/color_card_view_size"
+                    android:layout_margin="@dimen/margin_small"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_car"
+                    app:layout_constraintTop_toTopOf="@+id/iv_car">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@{model.color}"
+                        tools:background="@color/orange" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_car"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    android:scaleType="centerInside"
+                    app:fallbackDrawable="@{@drawable/car_image_fallback}"
+                    app:imageUrl="@{model.imageUrl}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/car_image_fallback" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </com.varol.findmycar.internal.view.RootConstraintLayout>
+
+</layout>
